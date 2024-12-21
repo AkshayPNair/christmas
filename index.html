@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Card</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Poppins:wght@400;600&display=swap');
+        
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(
+                45deg, 
+                #1a472a,
+                #2d5a27,
+                #b71c1c,
+                #1a472a
+            );
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            background-attachment: fixed;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .snowflake {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+            filter: blur(1px);
+            animation: snowfall linear infinite;
+        }
+
+        @keyframes snowfall {
+            0% {
+                transform: translateY(-100vh) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) translateX(100px);
+                opacity: 0.3;
+            }
+        }
+
+        .card {
+            width: 500px;
+            height: 700px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2),
+                        0 0 50px rgba(255, 255, 255, 0.15);
+            overflow: hidden;
+            text-align: center;
+            position: relative;
+            animation: cardFloat 6s ease-in-out infinite;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes cardFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2),
+                           0 0 50px rgba(255, 255, 255, 0.15);
+            }
+            50% {
+                transform: translateY(-20px) rotate(1deg);
+                box-shadow: 0 22px 35px rgba(0, 0, 0, 0.2),
+                           0 0 70px rgba(255, 255, 255, 0.2);
+            }
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #2F5233, #C41E3A);
+            height: 280px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 64px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -150%; }
+            100% { left: 150%; }
+        }
+
+        .card-content {
+            padding: 30px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(240,240,240,0.95));
+            position: relative;
+        }
+
+        .card-content h1 {
+            font-family: 'Mountains of Christmas', cursive;
+            font-size: 36px;
+            color: #C41E3A;
+            text-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 2px 2px 3px rgba(0,0,0,0.1); }
+            50% { text-shadow: 0 0 15px rgba(196,30,58,0.5); }
+        }
+
+        .card-content p {
+            font-size: 18px;
+            color: #2F5233;
+            margin: 15px 0 25px;
+            line-height: 1.6;
+        }
+
+        .card-content .icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card-content .icons svg {
+            width: 45px;
+            height: 45px;
+            fill: #C41E3A;
+            transition: transform 0.3s, fill 0.3s;
+        }
+
+        .card-content .icons svg:hover {
+            transform: scale(1.2) rotate(15deg);
+            fill: #8B0000;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 15px;
+            width: 100%;
+            text-align: center;
+            font-size: 16px;
+            color: #2F5233;
+        }
+
+        .footer a {
+            color: #C41E3A;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+    </style>
+</head>
+<body>
+    <script>
+        // Create snowflakes
+        function createSnowflakes() {
+            const body = document.querySelector('body');
+            for(let i = 0; i < 50; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.style.left = Math.random() * 100 + 'vw';
+                snowflake.style.opacity = Math.random();
+                snowflake.style.animation = `snowfall ${Math.random() * 3 + 2}s linear infinite`;
+                body.appendChild(snowflake);
+            }
+        }
+        window.onload = createSnowflakes;
+    </script>
+    <div class="card">
+        <div class="card-header">🎄</div>
+        <div class="card-content">
+            <h1>Merry Christmas!</h1>
+            <p>Wishing you a season of joy and endless blessings. Have a magical holiday!</p>
+            <div class="icons">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.5L15 9H21L16 13.5L18 20L12 16L6 20L8 13.5L3 9H9L12 2.5Z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2L13.5 7H19L14.5 10L16 15L12 12L8 15L9.5 10L5 7H10.5L12 2ZM12 17L11 20C11 21.1 11.9 22 13 22H19C20.1 22 21 21.1 21 20V19L12 17ZM10 21V19H4V20C4 21.1 4.9 22 6 22H10V21Z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2L14 7.5H20L15.5 11L17.5 16.5L12 13L6.5 16.5L8.5 11L4 7.5H10L12 2M12 8C10.9 8 10 8.9 10 10V16H14V10C14 8.9 13.1 8 12 8Z"/></svg>
+            </div>
+        </div>
+        <div class="footer">
+            <p>Made with ❤️ for the holiday season.</p>
+        </div>
+    </div>
+</body>
+</html>
